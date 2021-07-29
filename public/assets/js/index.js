@@ -108,6 +108,10 @@ function sendTransaction(isAdding) {
   transactions.unshift(transaction);
 
   // re-run logic to populate ui with new record
+  console.log(transaction);
+  console.log(nameEl);
+  console.log(amountEl);
+  console.log("here!!!")
   populateChart();
   populateTable();
   populateTotal();
