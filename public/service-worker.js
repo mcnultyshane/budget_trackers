@@ -42,7 +42,7 @@ self.addEventListener("activate", function(event) {
         })
     );
 
-    self.ClientRectList.claim();
+    self.clients.claim();
 });
 
 // fetch
