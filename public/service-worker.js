@@ -14,12 +14,14 @@ const FILES_TO_CACHE = [
 // install
 self.addEventListener("install", function (event) {
     event.waitUntil(
-        caches.open(DATA_CACHE_NAME).then((cache) => cache.add("api/transaction"))
+        caches.open(DATA_CACHE_NAME).then((cache) => 
+            cache.add("api/transaction"))
     );
 
     // pre cache all static assests
     event.waitUntil(
-        caches.open(CACHE_NAME).then((cache) => cache.addAll(FILES_TO_CACHE))
+        caches.open(CACHE_NAME).then((cache) => 
+            cache.addAll(FILES_TO_CACHE))
     );
 
     // tell the browser to activate this service worker immediately once it has finished installing
@@ -28,7 +30,7 @@ self.addEventListener("install", function (event) {
 
 // activate
 
-self.addEventListener("activate", function(event) {
+self.addEventListener("activate", function (event) {
     event.waitUntil(
         caches.keys().then(keyList => {
             return Promise.all(
@@ -46,21 +48,21 @@ self.addEventListener("activate", function(event) {
 });
 
 // fetch
-self.addEventListener("fetch", function(event) {
+self.addEventListener("fetch", function (event) {
     if (event.request.url.inclues("/api/")) {
         event.respondWith(
             caches.open(DATA_CACHE_NAME).then(cache => {
                 return fetch(event.request).then(response => {
-                    // if response was good, clone it and store it in the cache (money).
-                    if (response.status === 200) {
-                        cache.put(event.request.url, response.clone());
-                    }
-                    return response;
-                })
-                .catch(err => {
-                    // Network request failed, try to get it from the cache(drawer).
-                    return cache.match(event.request);
-                });
+                        // if response was good, clone it and store it in the cache (money).
+                        if (response.status === 200) {
+                            cache.put(event.request.url, response.clone());
+                        }
+                        return response;
+                    })
+                    .catch(err => {
+                        // Network request failed, try to get it from the cache(drawer).
+                        return cache.match(event.request);
+                    });
             }).catch(err => console.log(err))
         );
         return;
