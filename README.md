@@ -18,7 +18,9 @@ For Installation, clone this repositiory to your local machine.  Run `npm instal
 ## Usage 
 
 This application will allow users to create new budget transactions whether is action is a deposit or a withdrawl, in both online and offline capacities.  Please view the deployed application on [Heroku](https://budget-tracker--s.herokuapp.com/)<br>
-<img src="public/images/screencap-1.jpg">
+
+<br>
+<img src='./public/images/screencap-1.jpg' style="width:800px;" alt='app screenshot'>
 
 ## Guidelines
 
